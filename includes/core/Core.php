@@ -37,51 +37,19 @@ namespace PrototyPressTheme\Core
             return $templates;
         }
 
-        static function GetHeader($name = null, $args = [])
+        static function GetHeader($name = "", $args = [])
         {
-            $base_dir = PROTOTYPRESSTHEME_PATH."/templates/partials/";
-
-            $templates = [];
-            $name = (string) $name;
-            if($name !== ""){
-                $templates[] = "header-{$name}.php";
-            }
-            $templates[] = "header.php";
-        
-            foreach($templates as $template){
-                if(file_exists($base_dir.$template)){
-                    include($base_dir.$template);
-                    break;
-                }
-            }
+            get_template_part("templates/partials/header", $name, $args);
         }
 
         static function GetFooter($name = null, $args = [])
         {
-            $base_dir = PROTOTYPRESSTHEME_PATH."/templates/partials/";
-
-            $templates = [];
-            $name = (string) $name;
-            if($name !== ""){
-                $templates[] = "footer-{$name}.php";
-            }
-            $templates[] = "footer.php";
-        
-            foreach($templates as $template){
-                if(file_exists($base_dir.$template)){
-                    include($base_dir.$template);
-                    break;
-                }
-            }
+            get_template_part("templates/partials/footer", $name, $args);
         }
 
         static function GetSearchForm()
         {
-            $base_dir = PROTOTYPRESSTHEME_PATH."/templates/partials/";
-
-            if(file_exists($base_dir."searchform.php")){
-                include($base_dir."searchform.php");
-            }
+            get_template_part("templates/partials/searchform");
         }
 
     }
