@@ -14,8 +14,10 @@ namespace PrototyPressTheme\Core
                 add_filter($template."_template_hierarchy", "PrototyPressTheme\Core\Core::TemplateHierarchy");
             }
 
+            add_action("get_html_start", "PrototyPressTheme\Core\Core::GetHtmlStart", 10, 2);
             add_action("get_header", "PrototyPressTheme\Core\Core::GetHeader", 10, 2);
             add_action("get_footer", "PrototyPressTheme\Core\Core::GetFooter", 10, 2);
+            add_action("get_html_end", "PrototyPressTheme\Core\Core::GetHtmlEnd", 10, 2);
             add_action("get_search_form", "PrototyPressTheme\Core\Core::GetSearchForm");
             
         }
@@ -37,6 +39,11 @@ namespace PrototyPressTheme\Core
             return $templates;
         }
 
+        static function GetHtmlStart()
+        {
+            get_template_part("templates/partials/html", "start");
+        }
+
         static function GetHeader($name = "", $args = [])
         {
             get_template_part("templates/partials/header", $name, $args);
@@ -45,6 +52,11 @@ namespace PrototyPressTheme\Core
         static function GetFooter($name = null, $args = [])
         {
             get_template_part("templates/partials/footer", $name, $args);
+        }
+
+        static function GetHtmlEnd()
+        {
+            get_template_part("templates/partials/html", "end");
         }
 
         static function GetSearchForm()
